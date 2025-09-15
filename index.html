@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICCI Banking - Secure & Reliable</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #1a4f8b;
+            --secondary: #3b8beb;
+            --accent: #ff6b00;
+            --light: #f5f7fa;
+            --dark: #2c3e50;
+            --success: #28a745;
+            --danger: #dc3545;
+            --warning: #ffc107;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            font-size: 2rem;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.5rem 1.2rem;
+            border-radius: 30px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #e55f00;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 4rem 0;
+            background: linear-gradient(rgba(26, 79, 139, 0.9), rgba(26, 79, 139, 0.8)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%231a4f8b"/><path d="M0 0L100 100" stroke="%233b8beb" stroke-width="2"/><path d="M100 0L0 100" stroke="%233b8beb" stroke-width="2"/></svg>');
+            background-size: cover;
+            color: white;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--dark);
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .section-title p {
+            color: #666;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--light);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card i {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        /* Banking Demo */
+        .banking-demo {
+            padding: 4rem 0;
+            background: var(--light);
+        }
+
+        .demo-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .account-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 10px;
+            color: white;
+        }
+
+        .balance {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .transaction-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .form-group input, .form-group select {
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .transaction-history {
+            margin-top: 2rem;
+        }
+
+        .transaction-history h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .transaction-list {
+            list-style: none;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .transaction-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .transaction-item:last-child {
+            border-bottom: none;
+        }
+
+        .transaction-amount {
+            font-weight: 600;
+        }
+
+        .deposit {
+            color: var(--success);
+        }
+
+        .withdraw {
+            color: var(--danger);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.2rem;
+            color: var(--accent);
+        }
+
+        .footer-section p, .footer-section li {
+            margin-bottom: 0.8rem;
+            opacity: 0.8;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+            
+            .auth-buttons {
+                margin-top: 1rem;
+            }
+            
+            .account-info {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-landmark"></i>
+                    <h1>ICCI Banking</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Accounts</a></li>
+                        <li><a href="#">Transfer</a></li>
+                        <li><a href="#">Payments</a></li>
+                        <li><a href="#">Investments</a></li>
+                        <li><a href="#">Support</a></li>
+                    </ul>
+                </nav>
+                <div class="auth-buttons">
+                    <button class="btn btn-outline">Login</button>
+                    <button class="btn btn-primary">Register</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Banking Made Simple & Secure</h2>
+                <p>Experience the future of banking with ICCI's cutting-edge technology and unparalleled customer service. Manage your finances with confidence.</p>
+                <button class="btn btn-primary">Open an Account</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose ICCI Banking?</h2>
+                <p>We provide innovative financial solutions tailored to your needs</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Advanced Security</h3>
+                    <p>Your money is protected with industry-leading security measures and encryption.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Mobile Banking</h3>
+                    <p>Bank anytime, anywhere with our award-winning mobile banking app.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-percentage"></i>
+                    <h3>Low Rates</h3>
+                    <p>Enjoy competitive interest rates on loans and high yields on savings accounts.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Banking Demo Section -->
+    <section class="banking-demo">
+        <div class="container">
+            <div class="section-title">
+                <h2>Banking Demo</h2>
+                <p>Experience our banking interface with this simulation</p>
+            </div>
+            <div class="demo-container">
+                <div class="account-info">
+                    <div>
+                        <h3>Account Balance</h3>
+                        <p>Checking Account • XXXX-XXXX-XXXX-1234</p>
+                    </div>
+                    <div class="balance">$5,250.75</div>
+                </div>
+                
+                <div class="transaction-form">
+                    <h3>Make a Transaction</h3>
+                    <div class="form-group">
+                        <label for="type">Transaction Type</label>
+                        <select id="type">
+                            <option value="deposit">Deposit</option>
+                            <option value="withdraw">Withdraw</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="amount">Amount ($)</label>
+                        <input type="number" id="amount" placeholder="Enter amount" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <input type="text" id="description" placeholder="Enter description">
+                    </div>
+                    <button class="btn btn-primary" id="executeTransaction">Execute Transaction</button>
+                </div>
+                
+                <div class="transaction-history">
+                    <h3>Recent Transactions</h3>
+                    <ul class="transaction-list" id="transactionList">
+                        <li class="transaction-item">
+                            <div class="transaction-details">
+                                <div class="transaction-desc">Salary Deposit</div>
+                                <div class="transaction-date">Aug 15, 2023</div>
+                            </div>
+                            <div class="transaction-amount deposit">+$3,500.00</div>
+                        </li>
+                        <li class="transaction-item">
+                            <div class="transaction-details">
+                                <div class="transaction-desc">Electricity Bill</div>
+                                <div class="transaction-date">Aug 12, 2023</div>
+                            </div>
+                            <div class="transaction-amount withdraw">-$125.75</div>
+                        </li>
+                        <li class="transaction-item">
+                            <div class="transaction-details">
+                                <div class="transaction-desc">Grocery Store</div>
+                                <div class="transaction-date">Aug 10, 2023</div>
+                            </div>
+                            <div class="transaction-amount withdraw">-$86.50</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About ICCI Banking</h3>
+                    <p>ICCI Banking is a leading financial institution providing innovative banking solutions to millions of customers worldwide since 1985.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Personal Banking</a></li>
+                        <li><a href="#">Business Banking</a></li>
+                        <li><a href="#">Loans & Mortgages</a></li>
+                        <li><a href="#">Investment Services</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Financial Street, Banking District</p>
+                    <p><i class="fas fa-phone"></i> 1-800-ICCI-BANK</p>
+                    <p><i class="fas fa-envelope"></i> support@iccibanking.com</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 ICCI Banking. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Singleton BankServer implementation
+        class BankServer {
+            constructor() {
+                if (BankServer.instance) {
+                    return BankServer.instance;
+                }
+                
+                this.balance = 5250.75;
+                this.transactions = [
+                    { type: 'deposit', amount: 3500.00, description: 'Salary Deposit', date: 'Aug 15, 2023' },
+                    { type: 'withdraw', amount: 125.75, description: 'Electricity Bill', date: 'Aug 12, 2023' },
+                    { type: 'withdraw', amount: 86.50, description: 'Grocery Store', date: 'Aug 10, 2023' }
+                ];
+                
+                BankServer.instance = this;
+            }
+            
+            deposit(amount, description) {
+                this.balance += amount;
+                this.transactions.unshift({
+                    type: 'deposit',
+                    amount: amount,
+                    description: description,
+                    date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+                });
+                return this.balance;
+            }
+            
+            withdraw(amount, description) {
+                if (amount > this.balance) {
+                    throw new Error('Insufficient funds');
+                }
+                
+                this.balance -= amount;
+                this.transactions.unshift({
+                    type: 'withdraw',
+                    amount: amount,
+                    description: description,
+                    date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+                });
+                return this.balance;
+            }
+            
+            getBalance() {
+                return this.balance;
+            }
+            
+            getTransactions() {
+                return this.transactions;
+            }
+        }
+
+        // Initialize the BankServer singleton
+        const bankServer = new BankServer();
+        
+        // DOM manipulation and event handling
+        document.addEventListener('DOMContentLoaded', function() {
+            const executeBtn = document.getElementById('executeTransaction');
+            const balanceDiv = document.querySelector('.balance');
+            const transactionList = document.getElementById('transactionList');
+            
+            // Update transaction list UI
+            function updateTransactionList() {
+                const transactions = bankServer.getTransactions();
+                transactionList.innerHTML = '';
+                
+                transactions.forEach(transaction => {
+                    const li = document.createElement('li');
+                    li.className = 'transaction-item';
+                    
+                    li.innerHTML = `
+                        <div class="transaction-details">
+                            <div class="transaction-desc">${transaction.description}</div>
+                            <div class="transaction-date">${transaction.date}</div>
+                        </div>
+                        <div class="transaction-amount ${transaction.type}">
+                            ${transaction.type === 'deposit' ? '+' : '-'}$${transaction.amount.toFixed(2)}
+                        </div>
+                    `;
+                    
+                    transactionList.appendChild(li);
+                });
+            }
+            
+            // Execute transaction button click handler
+            executeBtn.addEventListener('click', function() {
+                const type = document.getElementById('type').value;
+                const amountInput = document.getElementById('amount');
+                const descriptionInput = document.getElementById('description');
+                
+                const amount = parseFloat(amountInput.value);
+                const description = descriptionInput.value.trim();
+                
+                if (isNaN(amount) || amount <= 0) {
+                    alert('Please enter a valid amount');
+                    return;
+                }
+                
+                if (description === '') {
+                    alert('Please enter a description');
+                    return;
+                }
+                
+                try {
+                    if (type === 'deposit') {
+                        bankServer.deposit(amount, description);
+                    } else {
+                        bankServer.withdraw(amount, description);
+                    }
+                    
+                    // Update UI
+                    balanceDiv.textContent = '$' + bankServer.getBalance().toFixed(2);
+                    updateTransactionList();
+                    
+                    // Reset form
+                    amountInput.value = '';
+                    descriptionInput.value = '';
+                    
+                } catch (error) {
+                    alert(error.message);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
